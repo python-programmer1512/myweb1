@@ -1,16 +1,20 @@
-import React from 'react'
-import logo from './logo.svg';
-import './App.css';
-import {Button, Progress} from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { Button, Progress } from 'semantic-ui-react'
 
-function App() {
-  return (
-    <div>
-      <p> asdasd</p>
-      <Button primary>  asdasdas </Button>
-      <Progress percent={66} indicating/>
-    </div>
-  );
+export default class ProgressExampleIndicating extends Component {
+  state = { percent: 0 }
+
+  increment = () =>
+    this.setState((prevState) => ({
+      percent: prevState.percent >= 100 ? 0 : prevState.percent + 20,
+    }))
+
+  render() {
+    return (
+      <div>
+        <Progress percent={this.state.percent} indicating progress />
+        <Button onClick={this.increment}>Increment</Button>
+      </div>
+    )
+  }
 }
-
-export default App;
